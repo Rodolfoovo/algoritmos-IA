@@ -38,18 +38,27 @@ def eureka(noAtual, meta):
   else:
     return False
   
-# Algoritmo A*
-def aEstrela():
-  Abertos = []
-  Fechados = []
-  
-  for node in Grafo.nodes:
-    Abertos = node
+def melhorVertice(abertos):
 
+  
+# Algoritmo A*
+def aEstrela(Grafo, noAtual, meta):
+
+  abertos = []
+  fechados = []
+
+  while abertos and not eureka(noAtual, meta):
+    abertos.append(noAtual)
+
+    no =  melhorVertice(abertos)
+
+    eureka(noAtual, meta)
+
+
+    
 
 def main():
-  aEstrela()
-  print(Abertos) 
+  aEstrela(Grafo, 'G', 'K')
 
 if __name__ == "__main__":
   main()
