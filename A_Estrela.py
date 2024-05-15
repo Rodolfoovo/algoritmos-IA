@@ -33,6 +33,7 @@ def heuristica(estado):
   
 # Verifica se encontrou o nó
 def eureka(noAtual, meta):
+  
   if(noAtual == meta):
     return True
   else:
@@ -44,12 +45,11 @@ def melhorVertice(abertos):
 # Algoritmo A*
 def aEstrela(Grafo, noAtual, meta):
 
-  abertos = []
+  abertos = [noAtual]
   fechados = []
-
+  
   while abertos and not eureka(noAtual, meta):
     abertos.append(noAtual)
-
     no =  melhorVertice(abertos)
 
     eureka(noAtual, meta)
