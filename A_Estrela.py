@@ -49,14 +49,14 @@ def melhorVertice(abertos):
 # Algoritmo A*
 def aEstrela(Grafo, noAtual, meta):
 
-  abertos = [noAtual]
+  abertos = []
   fechados = []
   
   while abertos and not eureka(noAtual, meta):
 
     abertos.append(noAtual)
     vizinhos =  melhorVertice(abertos)
-    
+
     for vizinhoAtual in vizinhos:
       if vizinhoAtual in fechados:
         continue
