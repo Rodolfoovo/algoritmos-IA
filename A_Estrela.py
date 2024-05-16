@@ -1,9 +1,4 @@
 import networkx as nx
-class A_estrela:
-  def __init__(self, estado, heuristica, pai) -> None:
-    self.estado = estado
-    self.heuristica = heuristica(estado)
-    self.pai = pai
 # Cria um grafo direcionado
 Grafo = nx.DiGraph()
 
@@ -58,19 +53,17 @@ def aEstrela(Grafo, noAtual, meta):
     vizinhos =  melhorVertice(abertos)
 
     for vizinhoAtual in vizinhos:
-      if vizinhoAtual in fechados:
+      #novo_f = g[v] + c(u,v) + h(u)
+      if (vizinhoAtual in fechados or vizinhoAtual in abertos) and novo_f >= f[u]:
         continue
+      else:
+      eureka(noAtual, meta)
 
-      if eureka(noAtual, meta):
-
-
-
-
-    
 
 def main():
-  noInicial =  A_estrela('G', heuristica, False)
-  aEstrela(Grafo, noInicial, 'K')
+  noInicial = Grafo.nodes['G']
+  noFinal = Grafo.nodes['K']
+  aEstrela(Grafo, noInicial, noFinal)
 
 if __name__ == "__main__":
   main()
