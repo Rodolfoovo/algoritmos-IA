@@ -44,7 +44,7 @@ def melhorVertice(abertos):
 # Algoritmo A*
 def aEstrela(Grafo, noAtual, meta):
 
-  abertos = []
+  abertos = [noAtual]
   fechados = []
   
   while abertos and not eureka(noAtual, meta):
