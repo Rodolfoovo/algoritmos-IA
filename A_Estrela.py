@@ -54,10 +54,22 @@ def aEstrela(Grafo, noAtual, meta):
 
     for vizinhoAtual in vizinhos:
       #novo_f = g[v] + c(u,v) + h(u)
-      if (vizinhoAtual in fechados or vizinhoAtual in abertos) and novo_f >= f[u]:
+      if (vizinhoAtual in fechados or vizinhoAtual in abertos): #and novo_f >= f[u]:
         continue
       else:
-      eureka(noAtual, meta)
+        #pai[vizinhoAtual] = noAtual
+        #g[vizinhoAtual] = g[noAtual] + c(vizinhoAtual,noAtual) 
+        eureka(noAtual, meta)
+        if vizinhoAtual in fechados:
+          fechados.pop(vizinhoAtual)
+        if vizinhoAtual in abertos:
+          fechados.pop(vizinhoAtual)
+        abertos.append(vizinhoAtual)
+    fechados.append(noAtual)
+  if eureka(noAtual, meta):
+    return True
+  else:
+    return False
 
 
 def main():
