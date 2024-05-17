@@ -38,6 +38,7 @@ def melhorVertice(abertos):
     #Verifica se o custo atual é menor que o custo inicial
     if m2 > i2:
       melhorVertice = verticeConcorrente
+      i2 = m2
     #retorna o melhor vertice encontrado
   return  melhorVertice
 
@@ -48,12 +49,15 @@ def aEstrela(grafo, meta):
    achou = False
    while abertos and not achou:
       verticeAtual = melhorVertice(abertos)
-      print("Depois da busca \n")
-      print(verticeAtual)
+#      print("Depois da busca \n")
+#      print(verticeAtual)
       if meta == verticeAtual:
         achou = True
-      vizinho = []
+      vizinhos = []
+      #Implementado somente para que o código possua um fim
       achou = True
+      for vizinho in verticeAtual:
+        novoF = 
 def main():
    meta = grafo["K"]
    aEstrela(grafo, meta)
