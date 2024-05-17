@@ -57,16 +57,20 @@ def aEstrela(grafo, abertos,meta):
       if meta == verticeAtual:
         achou = True
       
-      vizinho = verticeAtual
-      novoF = calculoEuristica(vizinho)+calculoEuristica(verticeAtual)+ verticeAtual[1]
-      print(novoF)
+      vizinhos = grafo[verticeAtual[0]]
+      vizinhos = [vizinhos]
+      print(verticeAtual)
+      for vizinho in vizinhos:
+       print(vizinho)
+       novoF = calculoEuristica(vizinho)+calculoEuristica(verticeAtual)+ verticeAtual[1]
+#      print(novoF)
 #      print(novoF)
       #Verifica se a euristica calculada é maior que a anterior.
-      if (vizinho in fechados or vizinho in abertos) and novoF > calculoEuristica(vizinho):
-        continue
-      else:
-        achou = True
-            
+#      if (vizinho in fechados or vizinho in abertos) and novoF > calculoEuristica(vizinho):
+#        continue
+#      else:
+#        achou = True
+       achou = True           
 
 
 
