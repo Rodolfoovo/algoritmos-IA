@@ -1,8 +1,8 @@
 class A_EstrelaListasDeAdjacencia:
-    def __init__(self, estado, pai,custo) -> None:
-        self.estado = estado
-        self.pai = pai
-        self.euristica = custo
+  def __init__(self,custo,pai) -> None:
+    self.custo = custo
+    self.pai = pai
+
 grafo = {
     "A" : [("B",5),("H",10), ("D",10)],
     "B" : [("F",5)],
@@ -15,17 +15,16 @@ grafo = {
     "K" : [("K",10)]
 }
 
-def calculoEuristica(estado):
-#     print(estado)
-     if(estado == 'A' or estado == 'C' or estado == 'E'or estado == 'F'or estado == 'G'):
-      return 10
-     elif(estado == 'B'):
-      return 20
-     elif(estado == 'D'):
-      return 5
-     elif(estado == 'H' or estado == 'K'):
-      return 0
-     return 0
+def calculoEuristica(estado): 
+     if(estado[0] == 'A' or estado[0] == 'C' or estado[0] == 'E'or estado[0] == 'F'or estado[0] == 'G'):
+      return  10 + estado[1]
+     elif(estado[0] == 'B'):
+      return 20 + estado[1]
+     elif(estado[0] == 'D'):
+      return 5 + estado[1]
+     elif(estado[0] == 'H' or estado[0] == 'K'):
+      return 0 + estado[1]
+     
      
 def melhorVertice(abertos):
   #Pega o primeiro vertice
@@ -44,29 +43,41 @@ def melhorVertice(abertos):
     #retorna o melhor vertice encontrado
   return  melhorVertice
 
-def aEstrela(grafo, meta):
-   abertos = [grafo["G"]]
-   pai = None
+def aEstrela(grafo, abertos,meta):
+#   print(abertos)
    fechados = []
+   gFuncao = []
+   fFuncao = []
    achou = False
    while abertos and not achou:
       verticeAtual = melhorVertice(abertos)
-      print("Depois da busca \n")
-      print(verticeAtual)
+#      print(verticeAtual)
+#      print("Depois da busca \n")
+#      print(verticeAtual)
       if meta == verticeAtual:
         achou = True
-      for vizinho in verticeAtual:
-        if isinstance(vizinho,tuple):
-          if isinstance(vizinho[0], str):
-            novoF = calculoEuristica(vizinho)
-          print(novoF)
+      
+      vizinho = verticeAtual
+      novoF = calculoEuristica(vizinho)+calculoEuristica(verticeAtual)+ verticeAtual[1]
+      print(novoF)
+#      print(novoF)
+      #Verifica se a euristica calculada é maior que a anterior.
+      if (vizinho in fechados or vizinho in abertos) and novoF > calculoEuristica(vizinho):
+        continue
+      else:
+        achou = True
+            
+
+
+
 #        novoF = calculoEuristica(melhorVertice) + calculoEuristica(verticeAtual)
 #        print(melhorVertice, " ", verticeAtual)
         #Implementado somente para que o código possua um fim
-        achou = True
+      achou = True
 def main():
    meta = grafo["K"]
-   aEstrela(grafo, meta)
+   abertos = [grafo["G"]]
+   aEstrela(grafo,abertos, meta)
 
 if __name__ == "__main__":
   main()
