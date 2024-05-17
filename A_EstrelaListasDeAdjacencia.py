@@ -16,15 +16,16 @@ grafo = {
 }
 
 def calculoEuristica(estado):
-     return 0
+#     print(estado)
      if(estado == 'A' or estado == 'C' or estado == 'E'or estado == 'F'or estado == 'G'):
       return 10
      elif(estado == 'B'):
       return 20
      elif(estado == 'D'):
-      return 20
+      return 5
      elif(estado == 'H' or estado == 'K'):
       return 0
+     return 0
      
 def melhorVertice(abertos):
   #Pega o primeiro vertice
@@ -54,11 +55,15 @@ def aEstrela(grafo, meta):
       print(verticeAtual)
       if meta == verticeAtual:
         achou = True
-      vizinhos = []
-      #Implementado somente para que o código possua um fim
-      achou = True
-#      for vizinho in verticeAtual:
-#        novoF = 
+      for vizinho in verticeAtual:
+        if isinstance(vizinho,tuple):
+          if isinstance(vizinho[0], str):
+            novoF = calculoEuristica(vizinho)
+          print(novoF)
+#        novoF = calculoEuristica(melhorVertice) + calculoEuristica(verticeAtual)
+#        print(melhorVertice, " ", verticeAtual)
+        #Implementado somente para que o código possua um fim
+        achou = True
 def main():
    meta = grafo["K"]
    aEstrela(grafo, meta)
