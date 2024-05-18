@@ -56,7 +56,7 @@ def aEstrela(Grafo, noAtual, meta):
                 caminho.append(noAtual)
                 noAtual = pai[noAtual]
             caminho.reverse()
-            custo_total = g_score[caminho[-1]]
+            custo_total = g_score[caminho[-1]] + f_score[caminho[-1]]
             print("Caminho escolhido:", caminho)
             print("Custo total do caminho:", custo_total)
             return caminho, custo_total
@@ -82,7 +82,7 @@ def aEstrela(Grafo, noAtual, meta):
 
 def main():
     noInicial = 'G'
-    noFinal = 'K'
+    noFinal = 'B'
     aEstrela(Grafo, noInicial, noFinal)
 
 if __name__ == "__main__":
