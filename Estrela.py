@@ -33,10 +33,6 @@ def heuristica(estado):
 def eureka(noAtual, meta):
     return noAtual == meta
 
-# Encontra o melhor vértice em 'abertos'
-def melhorVertice(abertos, f_score):
-    return min(abertos, key=lambda x: f_score[x])
-
 # Algoritmo em si
 def aEstrela(Grafo, noAtual, meta):
     abertos = []
@@ -56,7 +52,7 @@ def aEstrela(Grafo, noAtual, meta):
                 caminho.append(noAtual)
                 noAtual = pai[noAtual]
             caminho.reverse()
-            custo_total = g_score[caminho[-1]] + f_score[caminho[-1]]
+            custo_total = g_score[caminho[-1]]
             print("Caminho escolhido:", caminho)
             print("Custo total do caminho:", custo_total)
             return caminho, custo_total
@@ -82,7 +78,7 @@ def aEstrela(Grafo, noAtual, meta):
 
 def main():
     noInicial = 'G'
-    noFinal = 'B'
+    noFinal = 'K'
     aEstrela(Grafo, noInicial, noFinal)
 
 if __name__ == "__main__":
